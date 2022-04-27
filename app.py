@@ -3,6 +3,18 @@ from peewee import *
 from playhouse.shortcuts import model_to_dict, dict_to_model
 from playhouse.postgres_ext import ArrayField
 
+import os
+
+from playhouse.db_url import connect
+
+DATABASE = connect(os.environ.get('https://git.heroku.com/racerp9.git'))
+
+
+
+
+
+
+
 db = PostgresqlDatabase('teams', user='iffathossain',
                         password='', host='localhost', port=5432)
 
@@ -51,6 +63,14 @@ Country(name="Italy", tracks=["Imola", "Monza"]).save()
 
 # Initialize Flask
 # We'll use the pre-defined global '__name__' variable to tell Flask where it is.
+
+
+if 'ON_HEROKU' in os.environ:
+    print('hitting ')
+    Team.initialize()
+    Country.initialize()
+
+
 app = Flask(__name__)
 
 @app.route('/teams/', methods=['GET', 'POST'])
