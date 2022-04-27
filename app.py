@@ -16,7 +16,7 @@ DATABASE = connect(os.environ.get('https://git.heroku.com/racerp9.git'))
 
 
 db = PostgresqlDatabase('teams', user='iffathossain',
-                        password='', host='localhost', port=5432)
+                        password='', host='https://git.heroku.com/racerp9.git', port=5432)
 
 db.connect()
 
@@ -154,5 +154,5 @@ def endpointer(id=None):
         return 'Deleted'
 
 
-app.run(debug=True, port=9100)
+app.run(debug=True)
 
