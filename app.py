@@ -5,7 +5,7 @@ from playhouse.postgres_ext import ArrayField
 import os
 from playhouse.db_url import connect
 
-DATABASE = connect(os.environ.get('DATABASE_URL'))
+DATABASE = connect(os.environ.get('localhost'))
 
 db = PostgresqlDatabase('d2cbjpoidjse0a', user="czwspfhidpomei", password="d7f3065c59c7d752bc974a18fe8a3360b98aad41de0b559887dbea1721bbccbb",
                         host='ec2-3-211-6-217.compute-1.amazonaws.com', port=5432)
