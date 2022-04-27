@@ -2,23 +2,22 @@ from flask import Flask, request, jsonify
 from peewee import *
 from playhouse.shortcuts import model_to_dict, dict_to_model
 from playhouse.postgres_ext import ArrayField
-
 import os
-
 from playhouse.db_url import connect
 
 DATABASE = connect(os.environ.get('https://git.heroku.com/racerp9.git'))
 
 
-# DATABASE = PostgresqlDatabase('teams', user='iffathossain',
-#                         password='', host='localhost', port=5432)
 
-# DATABASE.connect()
+db = PostgresqlDatabase('teams', user='iffathossain',
+                        password='', host='https://git.heroku.com/racerp9.git', port=5432)
+
+db.connect()
 
 
 class BaseModel(Model):
     class Meta:
-        database = DATABASE
+        database = db
 
 
 class Team(BaseModel):
@@ -32,8 +31,8 @@ class Country(BaseModel):
     tracks = ArrayField(CharField)
 
 
-DATABASE.drop_tables([Team])
-DATABASE.create_tables([Team])
+db.drop_tables([Team])
+db.create_tables([Team])
 
 
 Team(name='Ferrari', drivers=['Charles', 'Carlos'], wins=2, country_id=5).save()
@@ -47,9 +46,9 @@ Team(name='Williams', drivers=['Nicholas', 'Alex'], wins=0, country_id=1).save()
 Team(name='Alfa Romeo', drivers=['Valtteri', 'Zhou'], wins=0, country_id=5).save()
 Team(name='Aston Martin', drivers=['Sebastian', 'Lance'], wins=0, country_id=1).save()
 
-DATABASE.create_tables([Country])
-DATABASE.drop_tables([Country])
-DATABASE.create_tables([Country])
+db.create_tables([Country])
+db.drop_tables([Country])
+db.create_tables([Country])
 Country(name="United Kingdom", tracks=['Silvetstone']).save()
 Country(name="United States", tracks=["COTA", "Miami gp"]).save()
 Country(name="France", tracks=["Circuit Paul Ricard"]).save()
