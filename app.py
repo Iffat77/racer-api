@@ -5,15 +5,14 @@ from playhouse.postgres_ext import ArrayField
 import os
 from playhouse.db_url import connect
 
-DATABASE = connect(os.environ.get('https://git.heroku.com/racerp9.git'))
+DATABASE = connect(os.environ.get('DATABASE_URL'))
+
+db = PostgresqlDatabase('d2cbjpoidjse0a', user="czwspfhidpomei", password="d7f3065c59c7d752bc974a18fe8a3360b98aad41de0b559887dbea1721bbccbb",
+                        host='ec2-3-211-6-217.compute-1.amazonaws.com', port=5432)
 
 
-
-db = PostgresqlDatabase('teams', user='iffathossain',
-                        password='', host='https://git.heroku.com/racerp9.git', port=5432)
 
 db.connect()
-
 
 class BaseModel(Model):
     class Meta:
