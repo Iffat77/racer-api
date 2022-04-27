@@ -10,11 +10,6 @@ from playhouse.db_url import connect
 DATABASE = connect(os.environ.get('https://git.heroku.com/racerp9.git'))
 
 
-
-
-
-
-
 # DATABASE = PostgresqlDatabase('teams', user='iffathossain',
 #                         password='', host='localhost', port=5432)
 
@@ -153,6 +148,6 @@ def endpointer(id=None):
         team.delete_instance()
         return 'Deleted'
 
-
-app.run(debug=True, port=8080)
+if __name__ == '__main__':
+  app.run(debug=True, port=5000)
 
